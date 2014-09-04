@@ -48,7 +48,7 @@ def main(files, print_all, key):
 def usage():
     print """\
 usage:
-%s [-a] [dir]""" % sys.argv[0]
+%s [-a] [-k distro_id] [dir]""" % sys.argv[0]
 
 if __name__ == "__main__":
     try:
