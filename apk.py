@@ -67,7 +67,6 @@ if __name__ == "__main__":
         usage()
         sys.exit(2)
 
-    print opts, args
     print_all = False
     key = "distro_id"
     for o, a in opts:
