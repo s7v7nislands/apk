@@ -16,9 +16,11 @@ def get_file(z, ext):
         if i.endswith(ext):
             yield i, z.read(i)
 
+
 def get_json(f, key):
     j = json.loads(f)
     return j.get(key, "%s Not exist" % key)
+
 
 def get_apk(dirname):
     for root, dirs, files in os.walk(dirname, topdown=False):
@@ -26,11 +28,13 @@ def get_apk(dirname):
             if f.endswith('apk'):
                 yield os.path.join(root, f)
 
+
 def color(raw):
     if sys.platform == "win32":
         return raw
     else:
         return "\033[91m%s\033[0m" % raw
+
 
 def main(files, print_all, key):
     for f in files:
@@ -45,6 +49,7 @@ def main(files, print_all, key):
             else:
                 print "\t%s %s" % (i[0], color(get_json(i[1], key)))
 
+
 def usage():
     print """\
 usage:
@@ -56,7 +61,7 @@ usage:
 
 if __name__ == "__main__":
     try:
-            opts, args = getopt.gnu_getopt(sys.argv[1:], "hak:", ["help", "all", "key="])
+        opts, args = getopt.gnu_getopt(sys.argv[1:], "hak:", ["help", "all", "key="])
     except getopt.GetoptError as err:
         print str(err)
         usage()
@@ -74,4 +79,3 @@ if __name__ == "__main__":
         args.append('.')
     for d in sys.argv[1:]:
         main(get_apk(d), print_all, key)
-
